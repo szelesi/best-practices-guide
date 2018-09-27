@@ -9,11 +9,9 @@ By evaluating the roles and understanding the data flow between the services it 
 
 To collect information about the virtual infrastructure all managed vCenters and their connected hosts and datastores are periodically rescanned. This rescan process is visible in the **History** tab > **System** section in the Veeam Backup & Replication console. As seen here, the Host discovery process runs every four hours. All the collected information is stored within the configuration database.
 
-The amount of collected information is typically very small however the
-Host discovery process may take longer or even exceed the default schedule in highly distributed environments[^1]. If hosts or clusters are connected to vCenter over a high-latency link you may consider deploying a Backup server locally on the ROBO, then you  can create a vCenter service account with a limited scope to that particular location in order to reduce the window of the Host discovery process. If the ROBO uses a stand-alone host it is possible to add the host as a managed server directly instead of through vCenter.
+The amount of collected information is typically very small however the Host discovery process may take longer or even exceed the default schedule in highly distributed environments[^1]. If hosts or clusters are connected to vCenter over a high-latency link you may consider deploying a Backup server locally on the ROBO, then you  can create a vCenter service account with a limited scope in that particular location in order to reduce the window of the Host discovery process. If the ROBO uses a stand-alone host it is possible to add the host as a managed server directly instead of through vCenter.
 
-**Note:** Avoid adding individual hosts to the backup infrastructure if
-using shared storage in a vSphere cluster.
+**Note:** Avoid adding individual hosts to the backup infrastructure if using shared storage in a vSphere cluster.
 
 ![Host and storage discovery](backup_server_data_flow_1.png)
 
@@ -38,6 +36,8 @@ several tasks on the storage operating system. Therefore it is
 recommended to have some performance headroom on the controller. If your
 controller is already running on >90% CPU utilization, keep in mind
 that the scan might take significant time to complete.
+
+If you find that your storage changes frequqently you can adjust the default  timing for scans. By default we scan for snapshots and volume chnages every 10 minutes and full storage rescan every 7 days.
 
 The scanning interval of 10 minutes and 7 days can be changed with the following
 registry keys.
