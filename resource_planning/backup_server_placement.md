@@ -39,6 +39,7 @@ that the scan might take significant time to complete.
 
 If you find that your storage changes frequqently you can adjust the default  timing for scans. By default we scan for snapshots and volume chnages every 10 minutes and full storage rescan every 7 days.
 
+
 The scanning interval of 10 minutes and 7 days can be changed with the following
 registry keys.
 
