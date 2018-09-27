@@ -51,12 +51,13 @@ refer to the corresponding
 [Veeam Cloud Connect Reference Architecture](https://www.veeam.com/wp-cloud-connect-reference-architecture-v9.html).
 
 ## Authors
-
-* Preben Berg ([@poulpreben](https://twitter.com/poulpreben))
-* Andreas Neufert ([@AndyandtheVMs](https://twitter.com/AndyandtheVMs))
-* Tom Sightler
+* Ali Salman
+* Andrea  Borella
+* Boris Urban
+* Edwin Weijdema
+* Luca Dell'Oca
+* Matthias Mehrtens
 * Pascal di Marco
-* Stanislav Simakov ([@ssimakov](https://twitter.com/AndyandtheVMs))
-* Paul Szelesi ([@PSzelesi](https://twitter.com/PSzelesi))
-* Luca Dell'Oca ([@dellock6](https://twitter.com/dellock6))
-* Edwin Weijdema ([@viperian](https://twitter.com/viperian))
+* Paul Szelesi
+* Phillip Moore
+* Stanislav Simakov
