@@ -10,7 +10,7 @@
   * [Protecting Veeam Backup & Replication Configuration](resource_planning/protecting_veeam_backup_and_replication_config.md)
 * [Veeam Enterprise Manager](resource_planning/veeam_enterprise_manager.md)
   * [vCloud Director Self Service Portal](resource_planning/veeam_vcloud_director_portal.md)
-* [Search Server and Indexing](resource_planning/search_server_and_indexing.md)
+* [Guest Indexing](resource_planning/search_server_and_indexing.md)
 * [Proxy Servers - Introduction](resource_planning/proxy_servers_intro.md)
   * [Proxy - VMware vSphere](resource_planning/proxy_server_vmware-vsphere.md)
     * [Transport Modes](resource_planning/transport_modes.md)
@@ -24,7 +24,7 @@
     * [Sizing a Backup Proxy](resource_planning/sizing_a_backup_proxy.md)
   * [Proxy - Microsoft Hyper-V](resource_planning/proxy_server_ms-hyperv.md)
   * [Proxy - Nutanix AHV](resource_planning/proxy_server_nutanix-ahv.md)
-  
+
 * [Backup Repository](resource_planning/repository_server.md)
   * [Repository Types](resource_planning/repository_types.md)
     * [SMB](resource_planning/repository_type_smb.md)
