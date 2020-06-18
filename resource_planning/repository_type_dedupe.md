@@ -20,9 +20,9 @@ The downside of active fulls is the need to transport the entire amount of virtu
 
 ## Using Deduplication Appliance as a Backup Copy Repository
 
-By default a backup copy job applies transformations to the backup chain. This could lead to the "de-hydration"/"re-hydration" overhead at the end of the backup copy job cycle, due to synthetic full or transformation). When using non integrated appliances, use the option of Active Fulls for Backup Copy jobs.
+By default a backup copy job applies transformations to the backup chain. This could lead to the "de-hydration"/"re-hydration" overhead at the end of the backup copy job cycle, due to synthetic full or transformation. When using non-integrated appliances, use the option of Active Fulls for Backup Copy jobs.
 
-If one of the integrated appliance is used, synthetic operations will be performed on the appliance itself, so they will require minimal additional time and lower I/O.
+If one of the integrated appliances is used, synthetic operations will be performed on the appliance itself, so they will require minimal additional time and lower I/O.
 
 ## Using Deduplication Appliance as a Virtual Tape Library
 
@@ -31,7 +31,7 @@ If a deduplication appliance is used in Virtual Tape Library (VTL) mode, it is r
 The repository used for staging should be configured with "Decompress before storing" advanced option enabled, which ensures previously applied compression at the job level is ignored.
 
 Also, ensure that the appliance meets Veeam tape requirements described [in the User
-Guide](https://helpcenter.veeam.com/backup/vsphere/system_requirements.html).
+Guide](https://helpcenter.veeam.com/docs/backup/vsphere/system_requirements.html?ver=95u4).
 
 ## File-Level Recovery and Veeam Explorers
 
@@ -41,7 +41,7 @@ To further reduce restore time, it is recommended to enable file-level indexing 
 
 ## Best Practices
 
-In this section, we will distinguish between integrated and non-integrated deduplication appliances. Integration is available for:
+In this section, we will distinguish between integrated and non-integrated deduplication appliances.
 
 Integrated appliances are:
 
@@ -50,6 +50,8 @@ Integrated appliances are:
 * ExaGrid - via integrated Veeam datamover
 
 If the mentioned integration API is unavailable due to licensing restrictions, or if any other deduplication appliance is used, the appliance should be considered *non-integrated*.
+
+One special case of deduplication appliance is Quantum DXi. Quantum features integrated data mover service that is able to assist Veeam Backup and Replication without need to add an appliance as a special type of repository (see [Quantum and Veeam new integration](https://www.veeam.com/blog/dxi-deduplication-appliance-integration-with-data-mover-service.html) for more details and [KB2155](https://www.veeam.com/kb2155) for specifics of job configuration).
 
 In order to optimize throughput for deduplication appliances, please use the following configuration guidelines:
 

@@ -1,3 +1,4 @@
+<!--- This was last Changed 03-05-17 by PS --->
 # Interaction with vSphere
 Veeam Backup & Replication relies heavily on the vSphere
 infrastructure it is protecting. Much of the implementation success depends
@@ -23,37 +24,15 @@ backup environment.
 
 Consider some important factors:
 
--   Problems with connectivity to the vCenter Server is one of the top
-    reasons for failed Veeam jobs. Having a well-performing vCenter
-    Server with reliable connectivity will mitigate this issue and
-    provide a strong backbone for a reliable backup infrastructure.
+* Problems with connectivity to the vCenter Server is one of the top reasons for failed Veeam jobs. Having a well-performing vCenter Server with reliable connectivity will mitigate this issue and provide a strong backbone for a reliable backup infrastructure.
 
--   The vCenter Server must be reliable and always available when backup
-    jobs are running. It must be able to answer queries and perform
-    actions in a reasonable amount of time. If the vCenter Server
-    performs poorly during normal operations, this should be corrected
-    prior to implementing Veeam Backup & Replication.
+* The vCenter Server must be reliable and always available when backup jobs are running. It must be able to answer queries and perform actions in a reasonable amount of time. If the vCenter Server performs poorly during normal operations, this should be corrected prior to implementing Veeam Backup & Replication.
 
--   For larger environments, with many concurrent jobs, especially jobs
-    that run at short intervals, such as near-CDP, the load on the
-    vCenter Server can be significant. The vCenter Server must be able
-    to handle increased transactional workload to prevent random job
-    failures due to command timeouts.
+* For larger environments, with many concurrent jobs, especially jobs that run at short intervals, the load on the vCenter Server can be significant. The vCenter Server must be able to handle increased transactional workload to prevent random job failures due to command timeouts.
 
--   The backup server must have reliable network connectivity to the
-    vCenter Server. It is generally suggested that the backup server is
-    placed in close logical proximity to the vCenter Server, but this is
-    not always the best deployment option. In cases where the backup
-    server and vCenter Server must be deployed across a distance, the
-    only real requirement is that this connection is consistent
-    and reliable.
+* The backup server must have reliable network connectivity to the vCenter Server. It is generally suggested that the backup server is placed in close logical proximity to the vCenter Server, but this is not always the best deployment option. In cases where the backup server and vCenter Server must be deployed across a distance, the only real requirement is that this connection is consistent and reliable.
 
--   When maintenance is being performed on the vCenter Server, best
-    practice would dictate that all Veeam Backup & Replication jobs
-    must be idle, and the Veeam Backup Service should be stopped. This
-    includes applying Windows updates, vCenter Server patches and
-    upgrades, or any maintenance that would require the vCenter service
-    to be restarted or the system rebooted.
++ When maintenance is being performed on the vCenter Server, best practice would dictate that all Veeam Backup & Replication jobs must be idle, and the Veeam Backup Service should be stopped. This includes applying Windows updates (if using the vCenter Server installable version), vCenter Server patches and upgrades, or any maintenance that would require the vCenter service to be restarted or the system rebooted.
 
 ## Impact of Snapshot Operations
 To create VM backups, Veeam Backup & Replication leverages the VMware
@@ -86,9 +65,8 @@ As Veeam Backup & Replication leverages the snapshot technology for
 performing backups, you should ensure it is possible to snapshot the
 virtual machine disks, since there are certain configurations that do
 not support snapshots. To identify VMs that do not support snapshots,
-see [VMware KB article 1025279](http://kb.vmware.com/kb/1025279) ; you
-can also use [Veeam ONE assessment
-reports](https://helpcenter.veeam.com/one/reports/vm_configuration_assessment.html)
+see [VMware KB article 1025279](https://kb.vmware.com/s/article/1025279) ; you
+can also use [Veeam ONE assessment reports](https://helpcenter.veeam.com/docs/one/reporter/vm_configuration_assessment.html?ver=95)
 to automatically detect them before starting Veeam Availability project.
 
 As with many things in technology, although the concept is simple, the
@@ -109,7 +87,7 @@ limitations. Keep in mind, that the maximum file size include all snapshot
 files and the data disk in total. For example if you have an old VMFS
 version 3 the maximum file size (including snapshots) is 2TB and so your
 data disk should not be sized over 1.98TB to still be able to create snapshots.
-For details, see [VMware KB article 1012384](http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1012384).
+For details, see [VMware KB article 1012384](https://kb.vmware.com/s/article/1012384).
 
 The default number of concurrently open snapshots per datastore in Veeam
 Backup & Replication is 4. This behavior can be changed by creating
@@ -136,8 +114,7 @@ the datastore. This is generally more noted on systems with significant
 write I/O load.
 
 **Note**: Refer to VMware Knowledge Base article at
-[www.kb.vmware.com/kb/1035550](file:///C:\Users\oslusarenko\Documents\Documents\B&R\In%20progress\8.0\VBR\Best%20Practices\Last%20version\www.kb.vmware.com\kb\1035550) for information on vMotion and Storage vMotion processes performed with
-open snapshots.
+[www.kb.vmware.com/kb/1035550](https://kb.vmware.com/s/article/1035550) for information on vMotion and Storage vMotion processes performed with open snapshots.
 
 ### Snapshot Removal
 Snapshot removal is the step with the highest impact from the
@@ -177,7 +154,7 @@ very sensitive to delays may experience issues with this short period of
 unresponsiveness.
 
 For explanation of snapshot removal issues, see [VMware KB article
-1002836](https://kb.vmware.com/kb/1002836).
+1002836](https://kb.vmware.com/s/article/1002836).
 
 ## How to Mitigate?
 To mitigate the impact of snapshots, consider the following
@@ -195,7 +172,7 @@ recommendations:
 
 -   **Consider snapshot impact during job scheduling.**
     When possible, schedule backups and replication job during periods
-    of low activity. Leveraging the [Backup Window](https://helpcenter.veeam.com/backup/vsphere/vm_copy_schedule.html)
+    of low activity. Leveraging the Backup Window
     functionality can keep long-running jobs from running during production.
     See the corresponding setting on the **Schedule** tab of the job wizard
 
@@ -224,7 +201,7 @@ recommendations:
     factored in the overall design. 
 
     **Note:** This is the default behavior that can be changed, as explained
-    in the VMware Knowledge Base: <http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1002929>
+    in the VMware Knowledge Base: <https://kb.vmware.com/s/article/1002929>
 
 -   **Allocate enough space for snapshots.**
     VMware vSphere 5.x puts the snapshot VMDK on the same datastore with
@@ -238,12 +215,12 @@ recommendations:
     server, and others).
 
     **Note:** This is the default behavior that can be changed, as explained
-    in the VMware Knowledge Base: <http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1002929>
+    in the VMware Knowledge Base: <https://kb.vmware.com/s/article/1002929>
 
 -   **Watch for low disk space warnings.**
     Veeam Backup & Replication warns you when there is not enough space
     for snapshots. The default threshold value for production datastores
-    is 10 GB. Keep in mind that you must increase this value
+    is 10% . Keep in mind that you must increase this value
     significantly if using very large datastores (up to 62 TB).
     You can increase the warning threshold in the backup server options,
     of the Veeam Backup & Replication UI.
@@ -253,9 +230,9 @@ recommendations:
     -   Path: `HKEY_LOCAL_MACHINE\SOFTWARE\Veeam\Veeam Backup and Replication`
     -   Key: `BlockSnapshotThreshold`
     -   Type: REG_DWORD
-    -   Default value (in GB): 2
+    -   Default value (in GB): 10
 
-    **Tip:** Use the [Veeam ONE Configuration Assessment Report](https://helpcenter.veeam.com/one/reporter/vm_configuration_assessment.html) to detect datastores with less than 10% of free disk space available for snapshot processing.
+    **Tip:** Use the [Veeam ONE Configuration Assessment Report](https://helpcenter.veeam.com/docs/one/reporter/vm_configuration_assessment.html?ver=95) to detect datastores with less than 10% of free disk space available for snapshot processing.
 
 -   **Enable parallel processing.**
     Parallel processing tries to backup multiple VM disks that belong to
@@ -269,7 +246,7 @@ recommendations:
     processes as failure of the cluster member and failover to other
     cluster members. Coordinate with the application owner and increase
     the cluster heartbeat thresholds. A good example is Exchange
-    DAG heartbeat. For details, see [Veeam KB Article     1744](http://www.veeam.com/kb1744).
+    DAG heartbeat. For details, see [Veeam KB Article     1744](https://www.veeam.com/kb1744).
 
 ## Considerations for NFS Datastores
 Backup from NFS datastores involves some additional consideration, when
@@ -288,17 +265,14 @@ will temporarily take ownership of the VM by changing the contents of
 the LCK file. This may cause significant additional "stuns" to the VM.
 Under certain circumstances, the VM may even end up being unresponsive.
 The issue is recognized by VMware and documented in
-<http://kb.vmware.com/kb/2010953>.
+<https://kb.vmware.com/s/article/2010953>.
 
 **Note**: This issue does not affect Veeam Direct NFS as part of Veeam Direct Storage Access
 processing modes and Veeam Backup from Storage Snapshots on NetApp NFS datastores.
 We highly recommend you to use one of these 2 backup modes to avoid problems.
 
 In hyperconverged infrastructures (HCI), it is preferred to keep the datamover
-close the the backed up VM to avoid stressing the storage 
-replication network with backup traffic. If the HCI is providing storage via
-the NFS protocol (such as Nutanix or Cisco HyperFlex), it is possible to
-force a Direct NFS data mover on the same host using the following registry key:
+close the  backed up VM to avoid stressing the storage replication network with backup traffic. If the HCI is providing storage via the NFS protocol (such as Nutanix), it is possible to force a Direct NFS data mover on the same host using the following registry key:
 
 -   Path: `HKEY_LOCAL_MACHINE\SOFTWARE\Veeam\Veeam Backup and Replication`
 -   Key: `EnableSameHostDirectNFSMode`
@@ -353,7 +327,7 @@ discovered when a backup failed.
 If not monitored appropriately, VMware orphaned snapshots can cause many
 unexpected problems. The most common problems are overfilled VM
 datastores, or snapshots growing so large they are impossible to commit.
-This is a well-known VMware vSphere issue described in [VMware KB article 1007814](http://kb.vmware.com/kb/1007814).
+This is a well-known VMware vSphere issue described in [VMware KB article 1007814](https://kb.vmware.com/s/article/1007814).
 The only way to
 manually remediate this issue is cloning the VM and performing a new
 full VM backup.
@@ -364,7 +338,7 @@ Veeam Snapshot Hunter automatically detects any VM with the configuration
 issue “Virtual machine disks consolidation needed”. Prior to performing
 backup of such VMs, Veeam Backup & Replication will trigger disk
 consolidation (provided that the datastore performance threshold
-specified in the [Storage Latency Control](http://helpcenter.veeam.com/backup/80/vsphere/index.html?options_parallel_processing.html)
+specified in the [Storage Latency Control](https://helpcenter.veeam.com/docs/backup/vsphere/options_parallel_processing.html?ver=95)
 settings is not exceeded).
 
 Snapshot Hunter will attempt consolidation eight (8) times. If
@@ -382,7 +356,7 @@ excluded from backup or replication jobs until the orphaned snapshots
 are manually removed.
 
 If you are evaluating Veeam Backup & Replication, use the
-[Infrastructure Assessment Reports](http://helpcenter.veeam.com/one/80/reports/index.html?infrastructure_assessment_report.html)
+[Infrastructure Assessment Reports](https://helpcenter.veeam.com/docs/one/reporter/vmware_infrastructure_dashboard.html?ver=95)
 included in Veeam Availability Suite to identify VMs with snapshots that
 can be affected by automatic snapshot consolidation.
 
@@ -470,9 +444,9 @@ If you try to back up thousands of VMs in a very short time frame, you
 can run into the SOAP session count limitation. For example, in vSphere
 5.1 the default maximum number of sessions is 500. If you hit this
 limitation, you can increase the vCenter Server SOAP connection limit
-from 500 to 1000. For details, see <http://kb.vmware.com/kb/2004663>.
+from 500 to 1000. For details, see <https://kb.vmware.com/s/article/2004663>.
 
-In the current version, Veeam’s scheduling component does not keep track
+Veeam’s scheduling component does not keep track
 of the connection count. For this reason, it is recommended to
 periodically check the number of vCenter Server connections within the
 main backup window to see if you can possibly run into a bottleneck in
@@ -481,7 +455,7 @@ future, and increase the limit values on demand only.
 You can also optimize the ESXi network (NBD) performance by increasing
 the NFC buffer size from 16384 to 32768 MB (or conservatively higher)
 and reducing the cache flush interval from 30s to 20s.
-For details how to do this, see [VMware KB article 2052302](http://kb.vmware.com/kb/2052302).
+For details how to do this, see [VMware KB article 2052302](https://kb.vmware.com/s/article/2052302).
 After increaing NFC buffer setting, you can increase the following Veeam
 Registry setting to add addition Veeam NBD connections:
 
@@ -493,22 +467,35 @@ Registry setting to add addition Veeam NBD connections:
 Be careful with this setting. If the buffer vs. NFC Connection ratio is
 too aggressive, jobs may fail.
 
+## Veeam Infrastructure cache
+
+A new service in Veeam Backup & Replication v9.5 is **Infrastructure Cache** reflected as the "Veeam Broker Service" windows service. With it, Veeam can cache directly into memory an inventory of the objects in a vCenter hierarchy. The collection is very efficient as it uses memory and it is limited to just the data needed by Veeam Backup & Replication.
+
+This cache is stored into memory, so at each restart of the Veeam services its content is lost; this is not a problem as the initial retrieval of data is done as soon as the Veeam server is restarted. From here on, Veeam "subscribed" to a specific API available in vSphere, so that it can receive in "push" mode any change to the environment, without the need anymore to do a full search on the vCenter hierarchy during every operation.
+
+![](infrastructure_cache_1.png)
+
+The most visible effects of this new service are:
+* The load against vCenter SOAP connection is heavily reduced, as we have now one single connection per Veeam server instead of each job running a new queiry against vCenter;
+* Every navigation operation of the vSphere hierarchy is instantaneous;
+* The initilisation of every job is almost immediate, as now the Infrastructure Cache service creates a copy in memory of its cache dedicated to each job, instead of the Veeam Manager service completing a full search against vCenter:
+
+![](infrastructure_cache_2.png)
+
+No special memory consideration needs to be done for the Infrastructure Cache, as its requirements are really low: as an example, the cache for an environment with 12 hosts and 250 VMs is only 120MB, and this number does not grow linearly since most of the size is fixed even for smaller environments.
+
 ## Security
 When connecting Veeam Backup & Replication to the vCenter Server
 infrastructure, you must supply credentials that the backup server will
 use to communicate with the vCenter Server.
 
 The features that Veeam provides, such as backup, restore, replication,
-and SureBackup, interact with vSphere at the fundamental level. Thus,
-certain permissions are required to take snapshots, create VMs,
-datastores, and resource groups. Because of this level of interaction,
-it is generally recommended that Veeam Backup & Replication uses an
-account with full administrative permissions.
+and SureBackup, interact with vSphere at the fundamental level. Certain permissions are required to take snapshots, create VMs, datastores, and resource groups. Because of this level of interaction, it is generally recommended that Veeam Backup & Replication uses a restricted account with the permissions that are required to complete the job.
 
 However, in some environments full administrative permissions are not
 desirable or permitted. For those environments, Veeam has identified the
 minimum permissions required for the various software functions. Review
-the ["Required Permissions" document](https://www.veeam.com/veeam_backup_9_0_permissions_pg.pdf) and
+the ["Required Permissions" document](https://www.veeam.com/veeam_backup_9_0_permissions_pg.pdf) (not changed since V9.0) and
 configure the account used by Veeam Backup & Replication to meet these
 requirements.
 
@@ -522,4 +509,4 @@ top of the vCenter Server tree. Specifically if you access the vCenter over
 a WAN link such scoping can reduce the (management background) WAN traffic.
 
 For a detailed description of accounts, rights and permissions required
-for Veeam Backup & Replication operations, see the ["Required Permissions" document](https://www.veeam.com/veeam_backup_9_0_permissions_pg.pdf).
+for Veeam Backup & Replication operations, see the ["Required Permissions" document](https://www.veeam.com/veeam_backup_9_0_permissions_pg.pdf) (not changed since V9.0).
